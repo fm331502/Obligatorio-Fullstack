@@ -1,6 +1,9 @@
 import express from "express";
 import v1Router from "./v1/index.js";
 import { notFoundMiddleware } from "./v1/middlewares/notFound.middleware.js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 

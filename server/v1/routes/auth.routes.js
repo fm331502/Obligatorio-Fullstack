@@ -1,9 +1,5 @@
 import { Router } from "express";
-import {
-  createUser,
-  loginUser,
-  upgadeUserPlan,
-} from "../controllers/user.controller.js";
+import { registerUser, loginUser } from "../controllers/auth.controller.js";
 import { validateBody } from "../middlewares/validateBody.middleware.js";
 import {
   createUserSchema,
@@ -12,8 +8,7 @@ import {
 
 const router = Router({ mergeParams: true });
 
-router.post("/", validateBody(createUserSchema), createUser);
+router.post("/register", validateBody(createUserSchema), registerUser);
 router.post("/login", validateBody(loginUserSchema), loginUser);
-router.post("/upgrade", upgadeUserPlan);
 
 export default router;

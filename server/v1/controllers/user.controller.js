@@ -1,5 +1,3 @@
-import { createUserSchema } from "../validators/user.validator.js";
-
 // REGISTER
 export const createUser = (req, res) => {
   const data = req.body;
@@ -11,3 +9,6 @@ export const loginUser = (req, res) => {
   const data = req.body;
   res.json({ message: data });
 };
+
+// UPGRADE PLAN
+export const upgadeUserPlan = (req, res) => {};

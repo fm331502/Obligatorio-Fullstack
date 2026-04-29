@@ -1,19 +1,16 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-import {
-  createUserService,
-  getUserByEmailService,
-} from "../services/user.services.js";
+import { UserService } from "../services/user.services";
 
 const signToken = (email) => {
   return jwt.sign({ email }, process.env.SECRET_KEY, { expiresIn: "1d" });
 };
 
 // LOGIN
-export const loginUser = (req, res) => {
+export const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
-  const user = { password: bcrypt.hashSync("password", 12) };
+  const user = await UserService.getByEmail(email);
   if (!user) {
     return res.status(401).json({ message: "Credenciales invalidas" });
   }
@@ -31,7 +28,7 @@ export const loginUser = (req, res) => {
 export const registerUser = async (req, res) => {
   const { password, email } = req.body;
 
-  const user = getUserByEmailService(email);
+  const user = UserService.getByEmail(email);
   if (user) {
     return res.status(409).json({ message: "El email ya esta registrado" });
   }
@@ -39,7 +36,7 @@ export const registerUser = async (req, res) => {
   const hash = bcrypt.hashSync(password, 12);
   req.body.password = hash;
 
-  const savedUser = await createUserService(req.body);
+  const savedUser = await UserService.create(req.body);
   const token = signToken(savedUser._id.toString());
 
   res.json({ message: "Usuario registado", token });

@@ -4,7 +4,7 @@ import {
   dateSchema,
   nombreSchema,
   telefonoSchema,
-} from "./general.validator";
+} from "./general.validator.js";
 
 export const createProfesorSchema = Joi.object({
   nombre: nombreSchema,

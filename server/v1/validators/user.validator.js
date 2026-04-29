@@ -5,6 +5,7 @@ export const createUserSchema = Joi.object({
   nombre: nombreSchema,
   email: emailSchema,
   password: joiString(8, 50).required(),
+  confirmPassword: joiString(8, 50).valid(Joi.ref("password")).required(),
   plan: joiString().default("base"),
 });
 

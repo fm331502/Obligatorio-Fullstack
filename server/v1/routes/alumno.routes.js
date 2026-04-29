@@ -6,11 +6,13 @@ import {
   getAlumnos,
   updateAlumno,
 } from "../controllers/alumno.controller.js";
+import { validateBody } from "../middlewares/validateBody.middleware.js";
+import { createAlumnoSchema } from "../validators/alumno.validator.js";
 
 const router = Router({ mergeParams: true });
 
-router.post("/", createAlumno);
-router.put("/:id", updateAlumno);
+router.post("/", validateBody(createAlumnoSchema), createAlumno);
+router.put("/:id", validateBody(createAlumnoSchema), updateAlumno);
 router.delete("/:id", deleteAlumno);
 router.get("/", getAlumno);
 router.get("/:id", getAlumnos);

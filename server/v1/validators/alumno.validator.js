@@ -6,7 +6,7 @@ import {
   joiString,
   nombreSchema,
   telefonoSchema,
-} from "./general.validator";
+} from "./general.validator.js";
 
 export const createAlumnoSchema = Joi.object({
   nombre: nombreSchema,

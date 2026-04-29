@@ -20,7 +20,7 @@ export const loginUser = (req, res) => {
   }
 
   const token = signToken(email);
-  res.json({ message: "Usuairo ingresado", usuario: req.body, token });
+  res.json({ message: "Usuairo ingresado", token });
 };
 
 // REGISTER
@@ -35,5 +35,5 @@ export const registerUser = (req, res) => {
   const hash = bcrypt.hashSync(password, 12);
   const token = signToken(email);
 
-  res.json({ message: "Usuario registado", usuario: req.body, token });
+  res.json({ message: "Usuario registado", token });
 };

@@ -1,5 +1,6 @@
 import express from "express";
 import v1Router from "./v1/index.js";
+import { notFoundMiddleware } from "./v1/middlewares/notFound.middleware.js";
 
 const app = express();
 
@@ -8,8 +9,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/v1", v1Router);
 
-app.use((req, res, next) => {
-  res.status(404).json({ message: "Ruta no encontrada" });
-});
+app.use(notFoundMiddleware);
 
 export default app;

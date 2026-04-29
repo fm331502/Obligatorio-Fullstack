@@ -5,8 +5,30 @@ USUARIO
 - plan (normal/plus)
 - rol (normal/admin) ?
 
-SOCIO
+PROFESOR
 - nombre
-- apellido
 - cedula
-- foto ?
+- telefono
+- fechaInicio
+
+ALUMNO
+- nombre
+- cedula
+- foto
+- grupo
+- activo
+- telefono
+- fechaNacimiento
+
+GRUPO
+- nombre
+- profesor
+
+PAGOS
+- alumno
+- monto
+- fecha
+- metodo
+
+
+

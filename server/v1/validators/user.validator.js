@@ -1,13 +1,14 @@
 import Joi from "joi";
-import { joiString, nombreSchema } from "./general.validator.js";
+import { emailSchema, joiString, nombreSchema } from "./general.validator.js";
 
 export const createUserSchema = Joi.object({
   nombre: nombreSchema,
-  // email: Joi.email,
-  password: joiString("password", 8, 50).required(),
+  email: emailSchema,
+  password: joiString(8, 50).required(),
+  plan: joiString().default("base"),
 });
 
 export const loginUserSchema = Joi.object({
-  nombre: nombreSchema,
-  // email: Joi.email,
+  email: emailSchema,
+  password: joiString(8, 50).required(),
 });

@@ -1,4 +1,4 @@
-import { createUserSchema } from "../validations/user.schema.js";
+import { createUserSchema } from "../validators/user.validator.js";
 
 // REGISTER
 export const createUser = (req, res) => {

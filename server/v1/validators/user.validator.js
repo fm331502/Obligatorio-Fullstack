@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { joiString, nombreSchema } from "./general.js";
+import { joiString, nombreSchema } from "./general.validator.js";
 
 export const createUserSchema = Joi.object({
   nombre: nombreSchema,

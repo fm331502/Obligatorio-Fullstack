@@ -1,8 +1,11 @@
 import express from "express";
-import userRoutes from "./routes/user.routes.js";
+import v1Router from "./v1";
 
 const app = express();
 
-app.use("/usuario", userRoutes);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use("/v1", v1Router);
 
 export default app;

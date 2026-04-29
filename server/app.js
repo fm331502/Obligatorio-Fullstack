@@ -1,9 +1,12 @@
-import express from "express";
-import v1Router from "./v1/index.js";
 import { notFoundMiddleware } from "./v1/middlewares/notFound.middleware.js";
+import { connectDB } from "./v1/config/db.config.js";
+import v1Router from "./v1/index.js";
+import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 
 dotenv.config();
+connectDB();
 
 const app = express();
 

@@ -8,12 +8,13 @@ import { authenticate } from "./middlewares/authenticate.middleware.js";
 
 const router = Router();
 
-// RUTAS DE AUTENTICACION
+// RUTAS PUBLICAS
 router.use("/auth", authRouter);
 
-// RUTAS PROTEGIDAS
+// AUTH MIDDLEWARE
 router.use(authenticate);
 
+// RUTAS PROTEGIDAS
 router.use("/profesor", profesorRouter);
 router.use("/grupo", grupoRouter);
 router.use("/alumno", alumnoRouter);

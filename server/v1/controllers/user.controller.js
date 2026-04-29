@@ -1,31 +1,29 @@
-import { validEmail } from "../libs/utils.js";
+import { createUserSchema } from "../validations/user.schema.js";
 
 // REGISTER
 export const createUser = (req, res) => {
-  const { nombre, email, password } = req.body;
-  if (!nombre || !email || !password) {
-    return res.status(400).json("Datos incompletos");
-  }
-
-  if (password.length < 8) {
+  const { value, error } = createUserSchema.validate(req.body, {
+    abortEarly: false,
+  });
+  if (error) {
     return res
       .status(400)
-      .json("Password tiene que tener al menos 8 caracteres");
+      .json({ message: "Error en validacion", error: error.details });
   }
 
-  if (!validEmail(email)) {
-    return res.status(400).json("Email invalido");
-  }
-
-  res.json({ message: "POST en /user", body: req.body });
+  res.json({ message: value });
 };
 
 // LOGIN
 export const loginUser = (req, res) => {
-  const { email, password } = req.body;
-  if (!email || !password) {
-    return res.status(400).json("Datos incompletos");
+  const { value, error } = createUserSchema.validate(req.body, {
+    abortEarly: false,
+  });
+  if (error) {
+    return res
+      .status(400)
+      .json({ message: "Error en validacion", error: error.details });
   }
 
-  res.json({ message: "POST en /user/login" });
+  res.json({ message: value });
 };

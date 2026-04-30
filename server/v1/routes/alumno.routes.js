@@ -4,6 +4,7 @@ import {
   deleteAlumno,
   getAlumno,
   getAlumnos,
+  getAlumnosSinPagoActual,
   updateAlumno,
 } from "../controllers/alumno.controller.js";
 import { validateBody } from "../middlewares/validateBody.middleware.js";
@@ -14,6 +15,7 @@ const router = Router({ mergeParams: true });
 router.post("/", validateBody(createAlumnoSchema), createAlumno);
 router.put("/:id", validateBody(createAlumnoSchema), updateAlumno);
 router.delete("/:id", deleteAlumno);
+router.get("/sin-pago-actual", getAlumnosSinPagoActual);
 router.get("/", getAlumno);
 router.get("/:id", getAlumnos);
 

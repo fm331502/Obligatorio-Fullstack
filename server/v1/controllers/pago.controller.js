@@ -25,8 +25,3 @@ export const getPagosByAlumno = async (req, res) => {
   const pagos = await PagoService.getPagosByAlumno(req.params.id);
   Res.ok(res, "Pagos de alumno encontrados", { pagos });
 };
-
-export const getPagosByGrupo = async (req, res) => {
-  const pagos = await PagoService.getPagosByGrupo(req.params.id);
-  Res.ok(res, "Pagos de grupo encontrados", { pagos });
-};

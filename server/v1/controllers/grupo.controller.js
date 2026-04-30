@@ -1,6 +1,11 @@
 import { GrupoService } from "../services/grupo.service.js";
 import { Res } from "../utils/response.utils.js";
 
+export const getGroupWithAlumnosAndPagoActual = async (req, res) => {
+  const grupo = GrupoService.getGroupWithAlumnosAndPagoActual(req.params.id);
+  Res.ok(res, "Grupo con alumnos y pagos encontrados", { grupo });
+};
+
 export const createGrupo = async (req, res) => {
   const grupo = await GrupoService.create(req.body);
   Res.ok(res, "Grupo creado", { grupo });

@@ -25,3 +25,11 @@ export const getPagosByAlumno = async (req, res) => {
   const pagos = await PagoService.getPagosByAlumno(req.params.id);
   Res.ok(res, "Pagos de alumno encontrados", { pagos });
 };
+
+export const getPagosPorMetodoYFechas = async (req, res) => {
+  const pagos = await PagoService.getPagosEntreFechas(req.query.metodo, {
+    start: req.query.start,
+    end: req.query.end,
+  });
+  Res.ok(res, "Pagos del mes con filtros encontrados", { pagos });
+};

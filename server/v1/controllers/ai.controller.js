@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const getModels = (req, res) => {
+export const getModels = (_, res) => {
   res.json({ message: "List of AI models" });
 };
 

@@ -5,7 +5,7 @@ export class AlumnoService {
   static pageLimit = 20;
 
   static getAlumnosSinPagoActual = async () => {
-    const pagos = await PagoService.getPagosDelMesActual();
+    const pagos = await PagoService.getPagosEntreFechas();
 
     page = Number(page) || 1;
     const skip = (page - 1) * this.pageLimit;

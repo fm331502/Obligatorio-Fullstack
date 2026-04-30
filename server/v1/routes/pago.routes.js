@@ -4,6 +4,7 @@ import {
   deletePago,
   getPagosByAlumno,
   updatePago,
+  getPagosPorMetodoYFechas,
 } from "../controllers/pago.controller.js";
 import { createPagoSchema } from "../validators/pagos.validator.js";
 import { validateBody } from "../middlewares/validateBody.middleware.js";
@@ -14,5 +15,6 @@ router.post("/", validateBody(createPagoSchema), createPago);
 router.put("/:id", validateBody(createPagoSchema), updatePago);
 router.delete("/:id", deletePago);
 router.get("/alumno/:id", getPagosByAlumno);
+router.get("/", getPagosPorMetodoYFechas);
 
 export default router;

@@ -3,11 +3,15 @@ import { getCurrentMonthStartAndEndDate } from "../utils/dates.utils.js";
 import { AlumnoService } from "./alumno.service.js";
 
 export class PagoService {
-  static getPagosDelMesActual = async () => {
-    const { start, end } = getCurrentMonthStartAndEndDate();
-    return await Pago.distinct("alumno", {
-      fecha: { $gte: start, $lt: end },
-    });
+  static getPagosEntreFechas = async (metodo, dateRange) => {
+    if (!dateRange.start || !dateRange.end)
+      dateRange = getCurrentMonthStartAndEndDate();
+
+    const query = {
+      fecha: { $gte: dateRange.start, $lt: dateRange.end },
+      ...(metodo && { metodo }),
+    };
+    return await Pago.distinct("alumno", query);
   };
 
   static create = async (data) => {

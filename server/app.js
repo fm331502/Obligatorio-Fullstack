@@ -4,7 +4,6 @@ import v1Router from "./v1/index.js";
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import { errorMiddleware } from "./v1/middlewares/error.middleware.js";
 
 dotenv.config();
 connectDB();
@@ -24,6 +23,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/v1", v1Router);
 
 app.use(notFoundMiddleware);
-app.use(errorMiddleware);
+app.use(errorMiddle);
 
 export default app;

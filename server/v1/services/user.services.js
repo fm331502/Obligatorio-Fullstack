@@ -22,7 +22,7 @@ export class UserService {
   };
 
   static getById = async (id) => {
-    validateObjectId();
+    validateObjectId(id);
     return await User.findById(id);
   };
 

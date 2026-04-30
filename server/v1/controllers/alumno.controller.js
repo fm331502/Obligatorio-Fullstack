@@ -8,7 +8,7 @@ export const getAlumnosSinPagoActual = async (req, res) => {
 };
 
 export const createAlumno = async (req, res) => {
-  const alumno = await AlumnoService.create(req.body);
+  const alumno = await AlumnoService.create(user._id, req.body);
   Res.ok(res, "Alumno creado", { alumno });
 };
 

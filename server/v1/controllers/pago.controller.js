@@ -1,19 +1,32 @@
-export const createPago = (req, res) => {
-  res.json({ message: "Pago creado" });
+import { PagoService } from "../services/pago.service.js";
+import { Res } from "../utils/response.utils.js";
+
+export const createPago = async (req, res) => {
+  const pago = await PagoService.create(req.body);
+  Res.ok(res, "Pago creado", { pago });
 };
 
-export const updatePago = (req, res) => {
-  res.json({ message: "Pago editado" });
+export const updatePago = async (req, res) => {
+  const pago = await PagoService.update(req.params.id, req.body);
+  Res.ok(res, "Pago editado", { pago });
 };
 
-export const deletePago = (req, res) => {
-  res.json({ message: "Pago borrado" });
+export const deletePago = async (req, res) => {
+  await PagoService.delete(req.params.id);
+  Res.ok(res, "Pago eliminado");
 };
 
-export const getPagosByAlumno = (req, res) => {
-  res.json({ message: "Pagos por alumno encontrados", pagos: [] });
+export const getPago = async (req, res) => {
+  const pago = await PagoService.getById(req.params.id);
+  Res.ok(res, "Pago encontrado", { pago });
 };
 
-export const getPagosByGrupo = (req, res) => {
-  res.json({ message: "Pagos por grupo encontrados", pagos: [] });
+export const getPagosByAlumno = async (req, res) => {
+  const pagos = await PagoService.getPagosByAlumno(req.params.id);
+  Res.ok(res, "Pagos de alumno encontrados", { pagos });
+};
+
+export const getPagosByGrupo = async (req, res) => {
+  const pagos = await PagoService.getPagosByGrupo(req.params.id);
+  Res.ok(res, "Pagos de grupo encontrados", { pagos });
 };

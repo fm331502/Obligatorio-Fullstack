@@ -4,7 +4,7 @@ const alumnoSchema = new Schema({
   nombre: { type: String, required: true, unique: true },
   grupo: { type: Schema.Types.ObjectId, ref: "Grupo" },
   activo: { type: Boolean, default: true },
-  telefono: { type: Strgin, required: true, unique: true },
+  telefono: { type: String, required: true, unique: true },
   fechaNacimiento: { type: Date, required: true },
 });
 

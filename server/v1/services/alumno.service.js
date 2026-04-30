@@ -1,6 +1,6 @@
 import Alumno from "../models/alumno.model.js";
 
-export class GrupoService {
+export class AlumnoService {
   static create = async (data) => {
     const alumno = new Alumno(data);
     await alumno.save();

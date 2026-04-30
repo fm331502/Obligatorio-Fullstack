@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
-import bcrypt from "bcryptjs";
-import { UserService } from "../services/user.services";
+import { Res } from "../utils/response.utils.js";
+import { AuthService } from "../services/auth.service.js";
 
 const signToken = (email) => {
   return jwt.sign({ email }, process.env.SECRET_KEY, { expiresIn: "1d" });
@@ -8,36 +8,23 @@ const signToken = (email) => {
 
 // LOGIN
 export const loginUser = async (req, res) => {
-  const { email, password } = req.body;
-
-  const user = await UserService.getByEmail(email);
-  if (!user) {
-    return res.status(401).json({ message: "Credenciales invalidas" });
+  try {
+    const { email, password } = req.body;
+    const user = await AuthService.login(email, password);
+    const token = signToken(user._id.toString());
+    Res.ok(res, "Usuario ingresado", { token });
+  } catch (error) {
+    Res.error(res, error);
   }
-
-  const valid = bcrypt.compareSync(password, user.password);
-  if (!valid) {
-    return res.status(401).json({ message: "Credenciales invalidas" });
-  }
-
-  const token = signToken(email);
-  res.json({ message: "Usuairo ingresado", token });
 };
 
 // REGISTER
 export const registerUser = async (req, res) => {
-  const { password, email } = req.body;
-
-  const user = UserService.getByEmail(email);
-  if (user) {
-    return res.status(409).json({ message: "El email ya esta registrado" });
+  try {
+    const user = await AuthService.register(req.body);
+    const token = signToken(user._id.toString());
+    Res.ok(res, "Usuario registrado", { token });
+  } catch (error) {
+    Res.error(res, error);
   }
-
-  const hash = bcrypt.hashSync(password, 12);
-  req.body.password = hash;
-
-  const savedUser = await UserService.create(req.body);
-  const token = signToken(savedUser._id.toString());
-
-  res.json({ message: "Usuario registado", token });
 };

@@ -7,13 +7,11 @@ USUARIO
 
 PROFESOR
 - nombre
-- cedula
 - telefono
 - fechaInicio
 
 ALUMNO
 - nombre
-- cedula
 - foto
 - grupo
 - activo

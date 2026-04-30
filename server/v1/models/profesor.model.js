@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 
 const profesorSchema = new Schema({
-  nombre: { type: String, required: true },
+  nombre: { type: String, required: true, unique: true },
   telefono: { type: String, required: true },
   fechaNacimiento: { type: Date, required: true },
 });

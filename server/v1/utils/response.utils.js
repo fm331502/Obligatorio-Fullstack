@@ -9,7 +9,7 @@ export class Res {
     if (isHandledError(error)) {
       return res.status(error.status).json({ message: error.message });
     } else {
-      console.log(error);
+      if (process.env.NODE_ENV === "development") console.error(error);
       return res.status(500).json({ message: "Error de servidor interno" });
     }
   };

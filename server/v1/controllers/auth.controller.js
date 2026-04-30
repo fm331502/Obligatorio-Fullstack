@@ -8,23 +8,15 @@ const signToken = (email) => {
 
 // LOGIN
 export const loginUser = async (req, res) => {
-  try {
-    const { email, password } = req.body;
-    const user = await AuthService.login(email, password);
-    const token = signToken(user._id.toString());
-    Res.ok(res, "Usuario ingresado", { token });
-  } catch (error) {
-    Res.error(res, error);
-  }
+  const { email, password } = req.body;
+  const user = await AuthService.login(email, password);
+  const token = signToken(user._id.toString());
+  Res.ok(res, "Usuario ingresado", { token });
 };
 
 // REGISTER
 export const registerUser = async (req, res) => {
-  try {
-    const user = await AuthService.register(req.body);
-    const token = signToken(user._id.toString());
-    Res.ok(res, "Usuario registrado", { token });
-  } catch (error) {
-    Res.error(res, error);
-  }
+  const user = await AuthService.register(req.body);
+  const token = signToken(user._id.toString());
+  Res.ok(res, "Usuario registrado", { token });
 };

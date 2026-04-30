@@ -2,8 +2,8 @@ import jwt from "jsonwebtoken";
 import { Res } from "../utils/response.utils.js";
 import { AuthService } from "../services/auth.service.js";
 
-const signToken = (email) => {
-  return jwt.sign({ email }, process.env.SECRET_KEY, { expiresIn: "1d" });
+const signToken = (id) => {
+  return jwt.sign({ id }, process.env.SECRET_KEY, { expiresIn: "1d" });
 };
 
 // LOGIN

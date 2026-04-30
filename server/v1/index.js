@@ -1,10 +1,12 @@
 import { Router } from "express";
 import authRouter from "./routes/auth.routes.js";
 import profesorRouter from "./routes/profesor.routes.js";
+import userRouter from "./routes/user.routes.js";
 import alumnoRouter from "./routes/alumno.routes.js";
 import grupoRouter from "./routes/grupo.routes.js";
 import pagoRouter from "./routes/pago.routes.js";
 import aiRouter from "./routes/ai.routes.js";
+import uploadRouter from "./routes/uploads.routes.js";
 import { authenticate } from "./middlewares/authenticate.middleware.js";
 
 const router = Router();
@@ -21,5 +23,7 @@ router.use("/grupo", grupoRouter);
 router.use("/alumno", alumnoRouter);
 router.use("/pago", pagoRouter);
 router.use("/ai", aiRouter);
+router.use("/uploads", uploadRouter);
+router.use("/user", userRouter);
 
 export default router;

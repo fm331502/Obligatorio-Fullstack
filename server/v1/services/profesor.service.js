@@ -1,5 +1,6 @@
 import Profesor from "../models/profesor.model.js";
 import { ConflictError, NotFoundError } from "../utils/errors.utils.js";
+import { validateObjectId } from "../utils/mongo.utils.js";
 
 export class ProfesorService {
   static create = async (data) => {
@@ -12,6 +13,7 @@ export class ProfesorService {
   };
 
   static update = async (id, data) => {
+    validateObjectId(id);
     const profesor = await Profesor.findByIdAndUpdate(id, data, {
       returnDocument: "after",
     });
@@ -21,6 +23,7 @@ export class ProfesorService {
   };
 
   static delete = async (id) => {
+    validateObjectId(id);
     return await Profesor.findByIdAndDelete(id);
   };
 
@@ -29,6 +32,7 @@ export class ProfesorService {
   };
 
   static getById = async (id) => {
+    validateObjectId(id);
     return await Profesor.findById(id);
   };
 
